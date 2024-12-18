@@ -1,0 +1,30 @@
+cv_camera.py comment
+
+import cv2
+
+# เปิดกล้อง (หมายเลข 0 คือกล้องตัวแรก)
+cap = cv2.VideoCapture(0)
+
+# ตรวจสอบว่ากล้องเปิดได้สำเร็จหรือไม่
+if not cap.isOpened():
+    print("ไม่สามารถเปิดกล้องได้")
+    exit()
+
+while True:
+    # อ่านเฟรมจากกล้อง
+    ret, frame = cap.read()
+    
+    if not ret:
+        print("ไม่สามารถอ่านข้อมูลจากกล้องได้")
+        break
+    
+    # แสดงภาพจากกล้อง
+    cv2.imshow('Camera', frame)
+    
+    # กด 'q' เพื่อออกจากโปรแกรม
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# ปิดการใช้งานกล้องและหน้าต่าง
+cap.release()
+cv2.destroyAllWindows()
