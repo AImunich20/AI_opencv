@@ -27,8 +27,8 @@ while cap.isOpened():
     if cv2.waitKey(1) & 0xFF == ord("q"):
         print("Exiting...")
         break
-finally:
-    # Release resources
-    cap.release()
-    cv2.destroyAllWindows()
-    print("Resources released. Program terminated.")
+
+# Release resources
+cap.release()
+cv2.destroyAllWindows()
+print("Resources released. Program terminated.")
