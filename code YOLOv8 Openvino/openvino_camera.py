@@ -1,6 +1,7 @@
 import cv2
 from ultralytics import YOLO
 import time
+import ipywidgets as widgets
 import openvino.runtime as ov
 
 # Initialize OpenVINO Core
@@ -25,10 +26,6 @@ cap = cv2.VideoCapture(0)
 
 while cap.isOpened():
     success, frame = cap.read()
-    if not success:
-        print("End of video or unable to read frame.")
-        break
-
     # Measure inference time
     start_time = time.time()
     results = ov_model(frame)
@@ -46,7 +43,7 @@ while cap.isOpened():
     if cv2.waitKey(1) & 0xFF == ord("q"):
         print("Exiting...")
         break
-      
+        
 # Release resources
 cap.release()
 cv2.destroyAllWindows()
