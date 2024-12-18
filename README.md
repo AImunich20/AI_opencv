@@ -1,2 +1,3 @@
 # AI_opencv
-.data
+.
+data
