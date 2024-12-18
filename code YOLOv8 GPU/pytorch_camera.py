@@ -9,9 +9,6 @@ cap = cv2.VideoCapture(0)  # Use 'video.mp4' for file input
 
 while cap.isOpened():
     success, frame = cap.read()  # Capture frame
-    if not success:
-        print("Warning: Unable to read frame.")
-        break
 
     # Perform YOLO inference
     results = model(frame)
