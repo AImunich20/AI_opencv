@@ -1,0 +1,20 @@
+Kaggle 
+IPython Magic Function
+เเบบที่ทำงานเฉพาะบันทัดนั้น %
+เเบบที่ทำงานทั้ง cell %%
+list all magic function %lsmagic
+
+1. Special Cell type
+
+shell/script command %%sh %%bash %%script
+%%sh
+cd /Kaggle/working
+ls -al
+%%script php
+<?php
+echo "This ids PHP code";
+
+HTML(%%html),Javascript(%%javascript)
+%%html
+<h4>Hello world!</h4>
+Click this link to <a href='http://kaggle.com'>Kaggle</a>
