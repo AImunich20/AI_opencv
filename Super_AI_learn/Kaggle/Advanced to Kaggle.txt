@@ -18,3 +18,16 @@ HTML(%%html),Javascript(%%javascript)
 %%html
 <h4>Hello world!</h4>
 Click this link to <a href='http://kaggle.com'>Kaggle</a>
+%%javascript
+var text = 'Hello wrold'
+alert(text)
+
+Write to file (%%writefile)
+%%writefile readme.txt
+This is the content
+of file 'readme.txt'
+
+Gpu connect
+!nvidia-smi
+!tree -d n-L 2 /urs/local/cuda
+
