@@ -1,0 +1,30 @@
+crontab -e
+crontab -l|-r
+sudo apt-get update
+sudo apt-get upgrade -y
+## Daemon ระบบ unit ไม่ต้องรอรับคำสั่งจาก user
+systemd
+acpid
+sshd
+httpd
+ps ดูข้อมูล
+pgrep
+kill -l
+killall //end system 
+pkill
+
+Shell(bash) Job contorl
+jobs
+fg 
+bg
+nohup
+
+nice -n <nice> <command>
+top
+htop cup gup seen
+sudo top
+
+sudo apt install htop
+htop
+sudo apt install screen
+screen [-r]
