@@ -1,18 +1,33 @@
 import cv2
-from ultralytics import YOLO
-import mediapipe as mp
+from ultralytics import YOLO  # YOLO
+import mediapipe as mp  # Mediapipe
 import numpy as np
 import openvino.runtime as ov
-import requests
+import ipywidgets as widgets
+import openvino as ov
 import pyfirmata
 import time
+import requests
 
 arduino_ip = "192.168.0.51"  # เปลี่ยนเป็น IP ของ Arduino
 url = f"http://{arduino_ip}"
 last_data = None  # ตัวแปรเก็บข้อมูลล่าสุดที่ได้รับ
 
 # # โหลดโมเดล YOLO
-model = YOLO("yolov8n.pt")  # ใช้ YOLOv8n สำหรับตรวจจับคน
+modelYOLO = YOLO("yolov8n.pt")  # ใช้ YOLOv8n สำหรับตรวจจับคน
+modelYOLO.export(format='openvino',dynamic=True,imgsz=(640,640),half=False)
+
+core = ov.Core()
+
+device = widgets.Dropdown(
+    options=core.available_devices + ["GPU"],
+    value='GPU',
+    description='Device:',
+    disabled=False,
+)
+device
+model = YOLO('yolov8n_openvino_model')
+
 
 def lineNotify(message, image):
     url = 'https://notify-api.line.me/api/notify'
@@ -22,10 +37,8 @@ def lineNotify(message, image):
     files = {'imageFile': image}
     requests.post(url, headers=headers, data=payload, files=files)
 
-core = ov.Core()
-
 # Arduino setup
-port = 'COM13'
+port = 'COM7'
 board = pyfirmata.Arduino(port)
 LED_pin1 = board.get_pin('d:2:o')
 LED_pin2 = board.get_pin('d:3:o')
@@ -255,7 +268,7 @@ while cap.isOpened():
 
                             if pupil_stability_start_time is None:
                                 pupil_stability_start_time = time.time()
-                            elapsed_time = time.time() - pupil_stability_start_time
+                                elapsed_time = time.time() - pupil_stability_start_time
 
                             if elapsed_time >= pupil_stability_threshold_time:
                                 # ตรวจสอบว่าลูกตาดำมีการเคลื่อนไหวหรือไม่
