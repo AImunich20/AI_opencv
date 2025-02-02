@@ -153,6 +153,7 @@ while cap.isOpened():
                         largest_person_box = (x1, y1, x2, y2)
 
         if largest_person_box:
+            time.sleep(1)
             x1, y1, x2, y2 = largest_person_box
             person_roi = frame[y1:y2, x1:x2]
             
@@ -234,6 +235,7 @@ while cap.isOpened():
                                     LED_pin2.write(HIGH) 
                                     _, img_encoded = cv2.imencode('.jpg', annotated_frame)
                                     lineNotify("DROWSINESS DETECTED!", img_encoded.tobytes())
+                                    time.sleep(0.5)
                                     LED_pin1.write(LOW)
                                     LED_pin2.write(LOW)
                                 if (elapsed_time >= time_line):
@@ -289,6 +291,7 @@ while cap.isOpened():
                                         LED_pin2.write(HIGH)
                                         _, img_encoded = cv2.imencode('.jpg', annotated_frame)
                                         lineNotify("PUPIL STABILITY DETECTED!", img_encoded.tobytes())
+                                        time.sleep(0.5)
                                         LED_pin1.write(LOW)
                                         LED_pin2.write(LOW)
                                 else:
@@ -302,6 +305,7 @@ while cap.isOpened():
 
         else:
             # ถ้าไม่พบคนในกล้องตัวแรก
+            time.sleep(1)
             success2, frame2 = cap2.read()
             
             if success2:
