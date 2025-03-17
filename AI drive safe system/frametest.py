@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import time  # To measure time for FPS calculation
+import time  # To calculate FPS
 
 # Mediapipe Face Mesh
 mp_face_mesh = mp.solutions.face_mesh
@@ -154,7 +154,7 @@ while cap.isOpened():
         cv2.putText(
             annotated_frame,
             f"FPS: {fps:.2f}",
-            (10, 110),
+            (10, 110),  # Adjust the position to avoid overlap with other text
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
             (255, 255, 0),
