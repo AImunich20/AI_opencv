@@ -95,9 +95,10 @@ while cap.isOpened():
                         std_mar = np.std(MAR_NORMAL)
                         MAR_THRESHOLD = mean_mar + 2 * std_mar
 
+                    # Display EAR, MAR, and FPS on the frame
                     cv2.putText(
                         annotated_frame,
-                        f"EAR: {avg_ear:.2f} MAR: {smoothed_mar:.2f}",
+                        f"EAR: {avg_ear:.2f}",
                         (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         0.5,
@@ -105,11 +106,22 @@ while cap.isOpened():
                         2
                     )
 
+                    cv2.putText(
+                        annotated_frame,
+                        f"MAR: {smoothed_mar:.2f}",
+                        (10, 50),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (0, 255, 0),
+                        2
+                    )
+
+                    # Check for drowsiness and yawning
                     if avg_ear < ear_threshold:
                         cv2.putText(
                             annotated_frame,
                             "DROWSINESS DETECTED!",
-                            (10, 50),
+                            (10, 70),
                             cv2.FONT_HERSHEY_SIMPLEX,
                             0.5,
                             (0, 0, 255),
@@ -122,7 +134,7 @@ while cap.isOpened():
                             cv2.putText(
                                 annotated_frame,
                                 "YAWNING DETECTED!",
-                                (10, 70),
+                                (10, 90),
                                 cv2.FONT_HERSHEY_SIMPLEX,
                                 0.5,
                                 (255, 0, 255),
@@ -142,10 +154,10 @@ while cap.isOpened():
         cv2.putText(
             annotated_frame,
             f"FPS: {fps:.2f}",
-            (10, 90),
+            (10, 110),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.5,
-            (0, 255, 255),
+            (255, 255, 0),
             2
         )
 
